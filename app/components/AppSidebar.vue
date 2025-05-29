@@ -6,7 +6,8 @@
   >
     <div class="p-4">
       <!-- Sidebar content here -->
-      <p class="text-lg font-bold">Sidebar</p>
+      <p class="text-lg font-bold">Camera List</p>
+      <CameraList />
     </div>
   </aside>
 </template>
