@@ -13,7 +13,23 @@ export default function useCameras() {
       name: "High-Value Storage",
       description: "Operational area",
       annotated: false,
-      annotations: [],
+      annotations: [
+        {
+          id: "annotation1",
+          name: "High-Value Item",
+          type: "box",
+          coordinates: { x: 100, y: 150, width: 200, height: 100 },
+          label: "High-Value Item",
+        },
+
+        {
+          id: "annotation2",
+          name: "High-Value Item 2",
+          type: "box",
+          coordinates: { x: 300, y: 250, width: 150, height: 80 },
+          label: "High-Value Item 2",
+        },
+      ],
       imageURL: "",
     },
     {
@@ -35,6 +51,10 @@ export default function useCameras() {
   ]);
 
   const selectedCamera = useState("selectedCamera", () => cameras.value[0]);
+  const selectedCameraId = useState(
+    "selectedCameraId",
+    () => selectedCamera.value.id
+  );
 
-  return { cameras, selectedCamera };
+  return { cameras, selectedCamera, selectedCameraId };
 }
