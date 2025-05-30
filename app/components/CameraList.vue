@@ -19,6 +19,14 @@ onClickOutside(target, () => {
   }
   isEditing.value = false;
 });
+
+function handleClick(cameraId) {
+  if (isEditing.value) {
+    isEditing.value = false;
+  }
+  selectedCameraId.value = cameraId;
+  selectedCamera.value = cameras.value.find((camera) => camera.id === cameraId);
+}
 </script>
 
 <template>
@@ -28,7 +36,7 @@ onClickOutside(target, () => {
         v-for="camera in cameras"
         :key="camera.id"
         class="flex flex-col items-center gap-4 border border-primary rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer"
-        @click="selectedCameraId = camera.id"
+        @click="handleClick(camera.id)"
       >
         <div
           class="flex items-center p-2 gap-2 w-full rounded-xl shadow"
