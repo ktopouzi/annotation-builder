@@ -1,4 +1,5 @@
 export default function useCameras() {
+  const isEditing = useState("isEditing", () => false);
   const cameras = useState("cameras", () => [
     {
       id: "camera1",
@@ -12,7 +13,7 @@ export default function useCameras() {
       id: "camera2",
       name: "High-Value Storage",
       description: "Operational area",
-      annotated: false,
+      annotated: true,
       annotations: [
         {
           id: "annotation1",
@@ -56,5 +57,13 @@ export default function useCameras() {
     () => selectedCamera.value.id
   );
 
-  return { cameras, selectedCamera, selectedCameraId };
+  function addCamera(camera) {
+    cameras.value.push(camera);
+
+    selectedCamera.value = camera;
+    selectedCameraId.value = camera.id;
+    isEditing.value = true;
+  }
+
+  return { cameras, selectedCamera, selectedCameraId, addCamera, isEditing };
 }
