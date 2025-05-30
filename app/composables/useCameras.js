@@ -57,6 +57,10 @@ export default function useCameras() {
     () => selectedCamera.value.id
   );
 
+  const currentCameraImageUrl = computed(() => {
+    return selectedCamera.value.imageURL || "";
+  });
+
   function addCamera(camera) {
     cameras.value.push(camera);
 
@@ -65,5 +69,12 @@ export default function useCameras() {
     isEditing.value = true;
   }
 
-  return { cameras, selectedCamera, selectedCameraId, addCamera, isEditing };
+  return {
+    addCamera,
+    cameras,
+    currentCameraImageUrl,
+    isEditing,
+    selectedCamera,
+    selectedCameraId,
+  };
 }
