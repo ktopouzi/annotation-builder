@@ -37,6 +37,10 @@ const defaultCameras = [
 
 export default function useAnnotationBuilder() {
   const isEditing = useState("isEditing", () => false);
+  const selectedAnnotationIndex = useState(
+    "selectedAnnotationIndex",
+    () => null
+  );
   const selectedTool = useState("selectedTool", () => "polygon");
   const tools = ref([
     { label: "Polygon", value: "polygon" },
@@ -163,5 +167,6 @@ export default function useAnnotationBuilder() {
     navigateToPreviousCamera,
     navigateToNextCamera,
     setCurrentTool,
+    selectedAnnotationIndex,
   };
 }

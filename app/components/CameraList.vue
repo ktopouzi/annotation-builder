@@ -7,8 +7,14 @@ const toast = useToast();
 const isEditingAnnotation = ref(false);
 const currentAnnotationId = ref(0);
 
-const { state, selectedCameraId, selectedCamera, isEditing, addCamera } =
-  useAnnotationBuilder();
+const {
+  state,
+  selectedCameraId,
+  selectedCamera,
+  isEditing,
+  addCamera,
+  selectedAnnotationIndex,
+} = useAnnotationBuilder();
 
 // computed property to check if the selected camera has a valid name (annotation and camera name)
 const hasValidName = computed(() => {
@@ -197,9 +203,12 @@ function handleAddCamera() {
             class="w-full p-4 flex flex-col gap-2"
           >
             <li
-              v-for="annotation in camera.annotations"
+              v-for="(annotation, index) in camera.annotations"
               :key="annotation.id"
               class="flex items-center justify-between min-w-0 bg-primary-50 rounded-md p-1 text-gray-800"
+              :class="{
+                'bg-primary-100': selectedAnnotationIndex === index,
+              }"
             >
               <UInput
                 v-if="
