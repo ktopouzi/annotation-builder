@@ -1,19 +1,57 @@
 <script setup lang="ts">
-// set cameraid to the last used camera
-const cameraId = ref(1);
+const {
+  annotationStats,
+  currentCameraImageUrl,
+  selectedTool,
+  tools,
+  navigateToPreviousCamera,
+  navigateToNextCamera,
+} = useAnnotationBuilder();
 </script>
 
 <template>
   <header
-    class="h-16 px-6 flex items-center justify-between border-b border-gray-200 bg-white dark:bg-gray-950 dark:border-gray-800"
+    class="h-auto md:h-16 px-2 flex flex-col justify-center w-full md:flex-row shrink-0 items-center md:justify-between border-b border-gray-200 bg-white dark:bg-gray-950 dark:border-gray-800"
   >
-    <p class="text-lg font-semibold">Dashboard Header</p>
+    <div class="flex items-center space-x-2">
+      <USlideover class="block md:hidden" close-icon="i-lucide-x">
+        <UButton icon="i-lucide-menu" color="neutral" variant="subtle" />
+        <template #body>
+          <CameraList />
+        </template>
+      </USlideover>
 
-    <UButton class="font-bold rounded-full" icon="i-lucide-check"
-      >All cameras annotated</UButton
+      <UButton
+        icon="i-lucide-chevron-left"
+        variant="ghost"
+        :disabled="annotationStats.currentIndex === 0"
+        @click="navigateToPreviousCamera"
+      >
+        Previous
+      </UButton>
+      <UButton
+        icon="i-lucide-chevron-right"
+        variant="ghost"
+        trailing
+        :disabled="annotationStats.currentIndex === annotationStats.total - 1"
+        @click="navigateToNextCamera"
+      >
+        Next
+      </UButton>
+    </div>
+
+    <UBadge size="sm" class="font-bold rounded-full"
+      >{{ annotationStats.fraction }} cameras annotated</UBadge
     >
     <div>
-      <UPagination v-model:page="cameraId" :items-per-page="1" :total="2" />
+      <USelect
+        v-if="currentCameraImageUrl"
+        v-model="selectedTool"
+        :items="tools"
+        option-attribute="label"
+        value-attribute="value"
+        class="shrink-0 w-32"
+      />
     </div>
   </header>
 </template>
