@@ -226,28 +226,12 @@ onMounted(() => {
   });
 });
 
-watch(
-  annotations,
-  (newAnnotations) => {
-    const camera = state.value.find((c) => c.id === selectedCameraId.value);
-
-    if (camera) {
-      camera.annotations = newAnnotations;
-    }
-  },
-  { immediate: true, deep: true }
-);
-
-watch(
-  selectedCameraId,
-  (newCameraId) => {
-    const camera = state.value.find((c) => c.id === newCameraId);
-    if (camera) {
-      annotations.value = camera.annotations || [];
-    }
-  },
-  { immediate: true, deep: true }
-);
+watchEffect(() => {
+  const camera = state.value.find((c) => c.id === selectedCameraId.value);
+  if (camera) {
+    annotations.value = camera.annotations || [];
+  }
+});
 </script>
 
 <template>
