@@ -2,4 +2,5 @@
 
 <template>
   <ImageUploader />
+  <ImageAnnotator />
 </template>
