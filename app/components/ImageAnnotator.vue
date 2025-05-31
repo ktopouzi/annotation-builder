@@ -3,9 +3,8 @@ const {
   currentCameraImageUrl,
   state,
   selectedCameraId,
-  selectedCamera,
+  selectedAnnotationIndex,
   selectedTool,
-  tools,
 } = useAnnotationBuilder();
 
 const imageRef = ref(null);
@@ -18,7 +17,6 @@ const previewPoint = ref(null);
 const imageRect = ref({ width: 0, height: 0, left: 0, top: 0 });
 
 // For interactivity
-const selectedAnnotationIndex = ref(null);
 const selectedPointIndex = ref(null);
 const dragging = ref(false);
 const dragStart = ref({ x: 0, y: 0 });
