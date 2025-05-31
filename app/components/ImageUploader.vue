@@ -1,5 +1,6 @@
 <script setup>
-const { selectedCamera, currentCameraImageUrl } = useCameras();
+const { state, selectedCameraId, currentCameraImageUrl } =
+  useAnnotationBuilder();
 
 const uploadedUrl = ref("");
 const dragging = ref(false);
@@ -19,7 +20,9 @@ function handleFile(file) {
       },
     });
     uploadedUrl.value = res.path;
-    selectedCamera.value.imageURL = res.path;
+
+    state.value.find((c) => c.id === selectedCameraId.value).imageURL =
+      res.path;
   };
   reader.readAsDataURL(file);
 }
@@ -39,16 +42,18 @@ function onFileChange(e) {
 function triggerFilePicker() {
   fileInput.value?.click();
 }
+
+const imageUrl = computed(() => {
+  return currentCameraImageUrl.value ?? "";
+});
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center h-full p-4">
-    <div v-if="uploadedUrl && currentCameraImageUrl.length" class="w-full">
-      <img :src="uploadedUrl" class="object-cover rounded shadow" />
-    </div>
-
+  <div
+    v-if="!imageUrl.length"
+    class="flex flex-col items-center justify-center h-full p-4"
+  >
     <div
-      v-else
       class="w-full h-full border-2 border-dashed border-gray-300 flex flex-col justify-center items-center rounded cursor-pointer hover:border-blue-400 transition"
       :class="{ 'bg-blue-50': dragging }"
       @dragover.prevent="dragging = true"
