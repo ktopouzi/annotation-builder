@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onClickOutside } from "@vueuse/core";
 
+const open = ref(false); // for modal state
 const target = ref("target");
 const toast = useToast();
 const isEditingAnnotation = ref(false);
@@ -149,19 +150,45 @@ function handleAddCamera() {
               }}</span>
             </div>
 
-            <UButton
+            <UModal
               v-if="selectedCameraId === camera.id"
-              variant="outline"
-              size="xs"
-              color="error"
-              icon="i-lucide-trash-2"
-              class="ml-auto"
-              @click.stop="
-                state.splice(state.indexOf(camera), 1);
-                isEditing = false;
-                selectedCameraId = state.length > 0 ? state[0].id : null;
-              "
-            />
+              v-model:open="open"
+              title="Delete selected camera?"
+              description="You are about to delete a camera."
+              :ui="{ footer: 'justify-end' }"
+            >
+              <UButton
+                variant="outline"
+                size="xs"
+                color="error"
+                icon="i-lucide-trash-2"
+                class="ml-auto"
+              />
+
+              <template #body>
+                Are you sure you want to delete this camera? This action cannot
+                be undone.
+              </template>
+
+              <template #footer>
+                <UButton
+                  label="Cancel"
+                  color="neutral"
+                  variant="outline"
+                  @click="open = false"
+                />
+                <UButton
+                  label="Delete"
+                  color="error"
+                  @click.stop="
+                    state.splice(state.indexOf(camera), 1);
+                    isEditing = false;
+                    selectedCameraId = state.length > 0 ? state[0].id : null;
+                    open = false;
+                  "
+                />
+              </template>
+            </UModal>
           </div>
           <ul
             v-if="
