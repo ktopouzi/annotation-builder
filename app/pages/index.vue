@@ -1,4 +1,14 @@
-<script setup lang="ts"></script>
+<script setup>
+const { navigateToPreviousCamera, navigateToNextCamera, setCurrentTool } =
+  useAnnotationBuilder();
+
+defineShortcuts({
+  "[": () => navigateToPreviousCamera(),
+  "]": () => navigateToNextCamera(),
+  p: () => setCurrentTool(),
+  d: () => setCurrentTool("directional"),
+});
+</script>
 
 <template>
   <div class="flex h-screen">
