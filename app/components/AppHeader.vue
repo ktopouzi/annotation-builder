@@ -11,16 +11,9 @@ const {
 
 <template>
   <header
-    class="h-auto md:h-16 px-2 flex flex-col justify-center w-full md:flex-row shrink-0 items-center md:justify-between border-b border-gray-200 bg-white dark:bg-gray-950 dark:border-gray-800"
+    class="h-auto md:h-16 p-2 flex flex-wrap justify-center w-full md:flex-row shrink-0 items-center md:justify-between border-b border-gray-200 bg-white dark:bg-gray-950 dark:border-gray-800"
   >
     <div class="flex items-center space-x-2">
-      <USlideover class="block md:hidden" close-icon="i-lucide-x">
-        <UButton icon="i-lucide-menu" color="neutral" variant="subtle" />
-        <template #body>
-          <CameraList />
-        </template>
-      </USlideover>
-
       <UButton
         icon="i-lucide-chevron-left"
         variant="ghost"
