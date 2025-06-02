@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { onClickOutside } from "@vueuse/core";
 
 const open = ref(false); // for modal state
