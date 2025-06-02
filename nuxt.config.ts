@@ -11,12 +11,6 @@ export default defineNuxtConfig({
   },
   nitro: {
     preset: "netlify",
-    storage: {
-      public: {
-        driver: "fs",
-        base: "./public",
-      },
-    },
   },
 
   compatibilityDate: "2024-11-27",
