@@ -41,15 +41,18 @@ function handleExportJson() {
         <UButton icon="i-lucide-info" color="primary" variant="ghost" />
 
         <template #content>
-          <div class="text-md font-semibold p-2">
+          <div class="text-md font-semibold p-2 flex flex-col gap-2">
             Hint:
 
+            <p>Right click on an annotation point to delete it!</p>
             <p>Double click on an annotation to delete it!</p>
+
             <p>Use <UKbd>[</UKbd> to select the previous camera</p>
             <p>Use <UKbd>]</UKbd> to select the next camera</p>
 
             <p>Use <UKbd>P</UKbd> to select the polygon tool</p>
             <p>Use <UKbd>D</UKbd> to select the directional tool</p>
+            <p>Press <UKbd>ESC</UKbd> to clear your selections</p>
           </div>
         </template>
       </UPopover>
