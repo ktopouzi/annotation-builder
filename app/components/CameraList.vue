@@ -127,11 +127,7 @@ function handleAddCamera() {
               class="shrink-0 bg-gray-300 p-2 rounded-xl flex items-center justify-center"
             >
               <UIcon
-                :name="
-                  camera.annotations?.length > 0
-                    ? 'i-lucide-check'
-                    : 'i-lucide-triangle-alert'
-                "
+                name="i-lucide-check"
                 class="shrink-0 p-3"
                 :class="{
                   'text-green-500': camera.annotations?.length > 0,
