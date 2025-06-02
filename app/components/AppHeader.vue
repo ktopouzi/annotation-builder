@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const {
   annotationStats,
   currentCameraImageUrl,
@@ -6,7 +6,30 @@ const {
   tools,
   navigateToPreviousCamera,
   navigateToNextCamera,
+  selectedCamera,
 } = useAnnotationBuilder();
+
+const { exportAsJson } = useAnnotationExporter();
+
+const exportItems = computed(() => [
+  {
+    label: "Export as JSON",
+    icon: "i-lucide-download",
+    disabled: !selectedCamera.value?.annotations.length,
+    onSelect() {
+      handleExportJson();
+    },
+  },
+  {
+    label: "Export as PNG",
+    icon: "i-lucide-download",
+    disabled: true,
+  },
+]);
+
+function handleExportJson() {
+  exportAsJson(selectedCamera.value?.annotations, selectedCamera.value?.id);
+}
 </script>
 
 <template>
@@ -52,7 +75,7 @@ const {
     <UBadge size="sm" class="font-bold rounded-full"
       >{{ annotationStats.fraction }} cameras annotated</UBadge
     >
-    <div>
+    <div class="flex items-center gap-2">
       <USelect
         v-if="currentCameraImageUrl"
         v-model="selectedTool"
@@ -61,6 +84,22 @@ const {
         value-attribute="value"
         class="shrink-0 w-32"
       />
+
+      <UDropdownMenu
+        arrow
+        :items="exportItems"
+        :ui="{
+          content: 'w-48',
+        }"
+      >
+        <UButton
+          label="Export"
+          trailing
+          icon="i-lucide-chevron-down"
+          color="neutral"
+          variant="outline"
+        />
+      </UDropdownMenu>
     </div>
   </header>
 </template>
