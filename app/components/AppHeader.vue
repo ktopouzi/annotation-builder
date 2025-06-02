@@ -23,6 +23,7 @@ const exportItems = computed(() => [
   {
     label: "Export as PNG",
     icon: "i-lucide-download",
+    disabled: !selectedCamera.value?.annotations.length,
     onSelect() {
       exportAsImage();
     },
