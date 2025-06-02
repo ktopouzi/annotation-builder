@@ -11,9 +11,25 @@ const {
 
 <template>
   <header
-    class="h-auto md:h-16 p-2 flex flex-wrap justify-center w-full md:flex-row shrink-0 items-center md:justify-between border-b border-gray-200 bg-white dark:bg-gray-950 dark:border-gray-800"
+    class="h-auto md:h-16 p-2 gap-2 flex flex-wrap justify-center w-full md:flex-row shrink-0 items-center md:justify-between border-b border-gray-200 bg-white dark:bg-gray-950 dark:border-gray-800"
   >
-    <div class="flex items-center space-x-2">
+    <div class="flex items-center">
+      <UPopover arrow>
+        <UButton icon="i-lucide-info" color="primary" variant="ghost" />
+
+        <template #content>
+          <div class="text-md font-semibold p-2">
+            Hint:
+
+            <p>Double click on an annotation to delete it!</p>
+            <p>Use <UKbd>[</UKbd> to select the previous camera</p>
+            <p>Use <UKbd>]</UKbd> to select the next camera</p>
+
+            <p>Use <UKbd>P</UKbd> to select the polygon tool</p>
+            <p>Use <UKbd>D</UKbd> to select the directional tool</p>
+          </div>
+        </template>
+      </UPopover>
       <UButton
         icon="i-lucide-chevron-left"
         variant="ghost"
