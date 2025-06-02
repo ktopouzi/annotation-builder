@@ -268,7 +268,7 @@ watchEffect(() => {
             orient="auto"
             markerUnits="strokeWidth"
           >
-            <path d="M0,0 L0,4 L4,2 Z" fill="red" />
+            <path d="M0,0 L0,4 L4,2 Z" fill="var(--ui-color-secondary-500)" />
           </marker>
         </defs>
 
@@ -278,11 +278,12 @@ watchEffect(() => {
             v-if="ann.type === 'polygon'"
             :points="ann.points.map((p) => `${p.x},${p.y}`).join(' ')"
             :class="{
-              'stroke-2 z-50': selectedAnnotationIndex === index,
+              'stroke-1 z-50': selectedAnnotationIndex === index,
             }"
-            fill="rgba(0, 150, 255, 0.3)"
-            stroke="primary"
-            stroke-width="0.5"
+            fill="var(--ui-color-primary-500)"
+            fill-opacity="0.3"
+            stroke="var(--ui-color-primary-300)"
+            stroke-width="0.3"
             style="pointer-events: auto; cursor: move"
             @mousedown.prevent="onMouseDownOnAnnotation($event, index)"
             @click.stop="onAnnotationClick($event, index)"
@@ -299,7 +300,7 @@ watchEffect(() => {
               :cx="point.x"
               :cy="point.y"
               r="1"
-              fill="blue"
+              fill="var(--ui-color-primary-500)"
               stroke="white"
               stroke-width="0.3"
               style="pointer-events: auto; cursor: pointer"
@@ -316,7 +317,7 @@ watchEffect(() => {
             :class="{
               'annotation-selected': selectedAnnotationIndex === index,
             }"
-            stroke="red"
+            stroke="var(--ui-color-secondary-500)"
             stroke-width="0.5"
             marker-end="url(#arrowhead)"
             style="pointer-events: auto; cursor: move"
@@ -333,7 +334,7 @@ watchEffect(() => {
             :cx="ann.from.x"
             :cy="ann.from.y"
             r="1.5"
-            fill="red"
+            fill="var(--ui-color-secondary-500)"
             stroke="white"
             stroke-width="0.3"
             style="pointer-events: auto; cursor: pointer"
@@ -346,7 +347,7 @@ watchEffect(() => {
             :cx="ann.to.x"
             :cy="ann.to.y"
             r="1.5"
-            fill="red"
+            fill="var(--ui-color-secondary-500)"
             stroke="white"
             stroke-width="0.3"
             style="pointer-events: auto; cursor: pointer"
@@ -366,7 +367,7 @@ watchEffect(() => {
               .join(' ')
           "
           fill="none"
-          stroke="blue"
+          stroke="var(--ui-color-primary-500)"
           stroke-dasharray="1,1"
           stroke-width="0.5"
         />
@@ -383,7 +384,7 @@ watchEffect(() => {
           :y1="currentPoints[0].y"
           :x2="previewPoint.x"
           :y2="previewPoint.y"
-          stroke="red"
+          stroke="var(--ui-color-secondary-500)"
           stroke-dasharray="1,1"
           stroke-width="0.5"
           marker-end="url(#arrowhead)"
