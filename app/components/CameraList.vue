@@ -77,7 +77,7 @@ function handleAnnotationEdit(id) {
 
 function handleAddCamera() {
   addCamera({
-    id: Date.now(),
+    id: state.value.length + 1,
     name: "New Camera",
     description: "New camera description",
     annotated: false,
