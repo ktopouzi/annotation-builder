@@ -11,7 +11,7 @@ defineShortcuts({
 </script>
 
 <template>
-  <div class="flex h-screen">
+  <div class="flex flex-col-reverse md:flex-row">
     <AppSidebar />
     <div class="flex flex-col flex-1">
       <AppHeader />
