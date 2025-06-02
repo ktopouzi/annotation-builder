@@ -7,6 +7,7 @@ const {
   selectedTool,
   imageRef,
 } = useAnnotationBuilder();
+const toast = useToast();
 
 const annotations = ref([]);
 
@@ -20,6 +21,13 @@ const imageRect = ref({ width: 0, height: 0, left: 0, top: 0 });
 const selectedPointIndex = ref(null);
 const dragging = ref(false);
 const dragStart = ref({ x: 0, y: 0 });
+
+defineShortcuts({
+  escape: {
+    usingInput: true,
+    handler: () => reset(),
+  },
+});
 
 function updateImageRect() {
   requestAnimationFrame(() => {
@@ -217,7 +225,29 @@ function onAnnotationDblClick(e, annIndex) {
   selectedAnnotationIndex.value = null;
   selectedPointIndex.value = null;
 }
+function onRightClickPoint(annIndex, pointIndex) {
+  const ann = annotations.value[annIndex];
+  if (ann.type === "polygon") {
+    // Ensure at least 3 points remain to keep a valid polygon
+    if (ann.points.length <= 3) {
+      toast.add({
+        title: "Operation not allowed",
+        description: "A polygon must have at least 3 points.",
+        variant: "outline",
+        color: "error",
+        icon: "i-lucide-alert-triangle",
+      });
+      return;
+    }
 
+    ann.points.splice(pointIndex, 1);
+
+    // If we just removed the selected point, reset selection
+    if (selectedPointIndex.value === pointIndex) {
+      selectedPointIndex.value = null;
+    }
+  }
+}
 onMounted(() => {
   nextTick(() => {
     updateImageRect();
@@ -234,7 +264,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div class="flex flex-col space-y-4">
+  <div class="flex flex-col">
     <div
       class="relative w-full"
       @click="onImageClick"
@@ -304,6 +334,7 @@ watchEffect(() => {
               stroke-width="0.3"
               style="pointer-events: auto; cursor: pointer"
               @mousedown.prevent="onMouseDownOnPoint($event, index, pIndex)"
+              @contextmenu.prevent="onRightClickPoint(index, pIndex)"
             />
           </template>
 
