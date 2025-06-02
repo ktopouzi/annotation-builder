@@ -7,7 +7,7 @@ const defaultCameras = [
     description: "The receiving dock camera monitors the loading area.",
     annotated: false, // useful if it comes from the server
     annotations: [],
-    imageURL: "",
+    imageURL: "/uploads/warehouse_1.jpeg",
   },
   {
     id: "camera2",
