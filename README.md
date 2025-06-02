@@ -1,6 +1,10 @@
-# Nuxt UI Starter
+# Annotation builder
 
-Look at [Nuxt docs](https://nuxt.com/docs/getting-started/introduction) and [Nuxt UI docs](https://ui.nuxt.com) to learn more.
+Hi there! This is a really simple annotation builder built in Nuxt and Nuxt UI.
+
+You can find quick walkthrough of the components and a quick demo of the app [here](https://youtu.be/CM2M0-x7eP0)
+
+You can find more information about the app, the specs and decisions made for this demo [on the excalidraw link here](https://excalidraw.com/#json=GjuBDIrZJG64n-bdu7S-f,UyQCwVjRGlnsimnLIYNq-A)
 
 ## Setup
 
@@ -10,14 +14,8 @@ Make sure to install the dependencies:
 # npm
 npm install
 
-# pnpm
+# pnpm recommended
 pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
 ## Development Server
@@ -30,46 +28,14 @@ npm run dev
 
 # pnpm
 pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
-
-Build the application for production:
+To test the app run
 
 ```bash
 # npm
-npm run build
+npm run vitest
 
 # pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+pnpm run vitest
 ```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
