@@ -117,10 +117,15 @@ export default function useAnnotationBuilder() {
     const annotated = camerasWithAnnotations.value;
     const fraction = `${annotated}/${total}`;
 
+    const currentIndex = state.value.findIndex(
+      (camera) => camera.id === selectedCameraId.value
+    );
+
     return {
       annotated,
       total,
       fraction,
+      currentIndex,
     };
   });
 
