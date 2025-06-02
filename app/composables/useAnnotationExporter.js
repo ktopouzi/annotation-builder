@@ -6,10 +6,7 @@ export function useAnnotationExporter() {
         if (a.type === "polygon") {
           return {
             type: "polygon",
-            points: a.points.map((p) => ({
-              x: p.x,
-              y: p.y,
-            })),
+            points: a.points,
           };
         } else if (a.type === "direction") {
           return {
