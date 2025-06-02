@@ -9,7 +9,7 @@ const {
   selectedCamera,
 } = useAnnotationBuilder();
 
-const { exportAsJson } = useAnnotationExporter();
+const { exportAsJson, exportAsImage } = useAnnotationExporter();
 
 const exportItems = computed(() => [
   {
@@ -23,7 +23,9 @@ const exportItems = computed(() => [
   {
     label: "Export as PNG",
     icon: "i-lucide-download",
-    disabled: true,
+    onSelect() {
+      exportAsImage();
+    },
   },
 ]);
 
