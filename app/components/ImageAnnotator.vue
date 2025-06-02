@@ -6,6 +6,7 @@ const {
   selectedAnnotationIndex,
   selectedTool,
   imageRef,
+  containerRef,
 } = useAnnotationBuilder();
 const toast = useToast();
 
@@ -266,6 +267,7 @@ watchEffect(() => {
 <template>
   <div class="flex flex-col">
     <div
+      ref="containerRef"
       class="relative w-full"
       @click="onImageClick"
       @mousemove="onMouseMove"

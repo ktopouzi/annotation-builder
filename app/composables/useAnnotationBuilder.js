@@ -38,6 +38,7 @@ const defaultCameras = [
 export default function useAnnotationBuilder() {
   const isEditing = useState("isEditing", () => false);
   const imageRef = useState("imageRef", () => null);
+  const containerRef = useState("containerRef", () => null);
   const selectedAnnotationIndex = useState(
     "selectedAnnotationIndex",
     () => null
@@ -175,5 +176,6 @@ export default function useAnnotationBuilder() {
     setCurrentTool,
     selectedAnnotationIndex,
     imageRef,
+    containerRef,
   };
 }
