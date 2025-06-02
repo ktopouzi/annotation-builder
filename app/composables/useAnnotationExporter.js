@@ -1,4 +1,8 @@
+import html2canvas from "html2canvas-pro";
+
 export function useAnnotationExporter() {
+  const { containerRef } = useAnnotationBuilder();
+
   function exportAsJson(annotations, cameraId = "camera-1") {
     const payload = {
       cameraId,
@@ -30,9 +34,26 @@ export function useAnnotationExporter() {
     URL.revokeObjectURL(url);
   }
 
-  // export as image can go here  with the help of html2canvas or similar library
+  async function exportAsImage() {
+    if (!containerRef.value) return;
 
+    console.log("here");
+
+    const canvas = await html2canvas(containerRef.value, {
+      useCORS: true,
+      backgroundColor: null,
+      scale: window.devicePixelRatio,
+    });
+
+    // Convert to PNG and download
+    const dataUrl = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.download = "annotated-image.png";
+    link.href = dataUrl;
+    link.click();
+  }
   return {
     exportAsJson,
+    exportAsImage,
   };
 }
