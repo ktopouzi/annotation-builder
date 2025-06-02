@@ -5,9 +5,9 @@ const {
   selectedCameraId,
   selectedAnnotationIndex,
   selectedTool,
+  imageRef,
 } = useAnnotationBuilder();
 
-const imageRef = ref(null);
 const annotations = ref([]);
 
 const drawing = ref(false);
@@ -118,7 +118,6 @@ function onImageClick(e) {
 }
 
 function onMouseMove(e) {
-  updateImageRect();
   if (drawing.value) {
     if (
       selectedTool.value === "directional" &&
@@ -222,7 +221,7 @@ function onAnnotationDblClick(e, annIndex) {
 onMounted(() => {
   nextTick(() => {
     updateImageRect();
-    window.addEventListener("resize", updateImageRect);
+    window.addEventListener("resize", updateImageRect); // resize observer might be better here
   });
 });
 
