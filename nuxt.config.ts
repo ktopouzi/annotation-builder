@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
   nitro: {
+    preset: "netlify",
     storage: {
       public: {
         driver: "fs",

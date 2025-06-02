@@ -1,5 +1,3 @@
-// server/api/upload-image.post.ts
-
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
   const { name, data } = body;
