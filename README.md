@@ -2,7 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d21102a1-f3a8-463b-ad09-0b9c097f9db3/deploy-status)](https://app.netlify.com/projects/annotation-builder/deploys)
 
-> [SPECS](https://excalidraw.com/#json=ZYwBG9g9s1oaamYBTMMZF,XDZADeahjRLzYpLuRiOtXg) | [VIDEO](https://youtu.be/CM2M0-x7eP0) | [LIVE DEMO](annotation-builder.netlify.app)
+> [SPECS](https://excalidraw.com/#json=ZYwBG9g9s1oaamYBTMMZF,XDZADeahjRLzYpLuRiOtXg) | [VIDEO](https://youtu.be/CM2M0-x7eP0) | [LIVE DEMO](https://annotation-builder.netlify.app/)
 
 Hi there! This is a really simple annotation builder built in Nuxt and Nuxt UI.
 
